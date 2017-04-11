@@ -13,8 +13,8 @@
           <div class="group-contents">
             <div class="input">
               <div class="label">Name:</div>
-              <input type="text" name="first_name" ng-model="info.lastname" placeholder="First" required="required" id="checkout-firstname-field" class="md ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAfBJREFUWAntVk1OwkAUZkoDKza4Utm61iP0AqyIDXahN2BjwiHYGU+gizap4QDuegWN7lyCbMSlCQjU7yO0TOlAi6GwgJc0fT/fzPfmzet0crmD7HsFBAvQbrcrw+Gw5fu+AfOYvgylJ4TwCoVCs1ardYTruqfj8fgV5OUMSVVT93VdP9dAzpVvm5wJHZFbg2LQ2pEYOlZ/oiDvwNcsFoseY4PBwMCrhaeCJyKWZU37KOJcYdi27QdhcuuBIb073BvTNL8ln4NeeR6NRi/wxZKQcGurQs5oNhqLshzVTMBewW/LMU3TTNlO0ieTiStjYhUIyi6DAp0xbEdgTt+LE0aCKQw24U4llsCs4ZRJrYopB6RwqnpA1YQ5NGFZ1YQ41Z5S8IQQdP5laEBRJcD4Vj5DEsW2gE6s6g3d/YP/g+BDnT7GNi2qCjTwGd6riBzHaaCEd3Js01vwCPIbmWBRx1nwAN/1ov+/drgFWIlfKpVukyYihtgkXNp4mABK+1GtVr+SBhJDbBIubVw+Cd/TDgKO2DPiN3YUo6y/nDCNEIsqTKH1en2tcwA9FKEItyDi3aIh8Gl1sRrVnSDzNFDJT1bAy5xpOYGn5fP5JuL95ZjMIn1ya7j5dPGfv0A5eAnpZUY3n5jXcoec5J67D9q+VuAPM47D3XaSeL4AAAAASUVORK5CYII=&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: pointer;">
-              <input type="text" name="last_name" ng-model="info.firstname" placeholder="Last" required="required" class="md ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required">
+              <input type="text" name="first_name" ng-model="info.lastname" placeholder="First" required="required" id="checkout-firstname-field" class="md ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched" value="<%= user.first_name %>">
+              <input type="text" name="last_name" ng-model="info.firstname" placeholder="Last" required="required" class="md ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" value="<%= user.last_name %>">
             </div>
             <div class="input">
               <div class="label">Address:</div>
@@ -278,7 +278,7 @@
             </div>
             <div class="input">
               <div class="label">City:</div>
-              <input type="text" name="city" ng-model="info.city" required="required" class="md ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required">
+              <input type="text" name="city" ng-model="info.city" required="required" class="md ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" value="<%= user.city %>">
             </div>
 
 
@@ -348,7 +348,7 @@
             <div class="clearfix"> </div>
             <div class="input">
               <div ng-hide="info.country == 'United States'" class="label ng-hide">Postal Code:</div>
-              <input type="text" name="postal_code" ng-model="info.zip" required="required" class="sm ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required">
+              <input type="text" name="postal_code" ng-model="info.zip" required="required" class="sm ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" value="<%= user.postal_code %>">
             </div>
             <div class="clearfix"></div>
           </div>
@@ -542,7 +542,7 @@
           <!--</form>-->
           <!--</form>-->
         </div>
-        <div class="modal-body step-2" data-step="2">
+<!--         <div class="modal-body step-2" data-step="2">
           <div id="ac-step3" class="ac-step" style="display: block !important;">
               <div class="ac-h3">Photo ID Required</div>
               <div id="ac-id-icon"></div>
@@ -553,11 +553,10 @@
               <div class="ac-hide-mobile">
                   <div class="ac-hint">Or,</div>
                   <input type="text" name="phone_number" placeholder="123-456-7890">
-                  <!-- <div id="ac-next-phone1" class="ac-link-button" style="display: block;"><span class="ac-strong">Use your phone's camera</span><i class="fa fa-chevron-right"></i></div> -->
               </div>
           </div>
-        </div>
-        <div class="modal-body step-3" data-step="3">
+        </div> -->
+        <div class="modal-body step-2" data-step="2">
           <div id="ac-step4" class="ac-step" style="display: block !important;">
             <div class="ac-h3">Photo ID Required</div>
             <div id="ac-id-icon"></div>
@@ -572,7 +571,7 @@
                 </div>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-lg-12">
-                    <div id="container-webcam" style="display: none">
+                    <div id="container-webcam">
                       <div class="col-xs-6 col-sm-6 col-lg-6">
                         <video id="webcam" width="640px" height="480px" class="thumbnail" autoplay>
                         </video>
@@ -582,12 +581,12 @@
                         <canvas id="selected-canvas" width="640px" height="480px" class="thumbnail">
                         </canvas>
                         <!--The blank canvas will store the captured image to keep the image resolution. -->
-                        <canvas id="blank-canvas" width="640px" height="480px" style='display: none'></canvas>
+                        <canvas id="blank-canvas" width="640px" height="480px"></canvas>
                         <strong>Captured Image</strong>
                       </div>
                     </div>
                     <div id="container-camera">
-                      <canvas id="hidden-canvas" style="display: none;"></canvas>
+                      <canvas id="hidden-canvas" ></canvas>
                       <div id="fileupload-container" class="fileupload fileupload-new" data-provides="fileupload">
                         <div class="fileupload-new thumbnail">
                           <img class="img-responsive" id="placehold-image" src="images/TapHere.gif" />
@@ -720,16 +719,20 @@
                 </div>
               </div>
             </div>
+            <div class="ac-hide-mobile">
+                  <div class="ac-hint">Or,</div>
+                  <input type="text" name="phone_number" id="phone_number" placeholder="123-456-7890">
+              </div>
             <!-- /.modal -->
           </div>
         </div>
-        <div class="modal-body step-4" data-step="4">
+        <div class="modal-body step-3" data-step="3">
           <div id="ac-step8" class="ac-step" style="display: block !important;">
             <div class="ac-h3">Complete!</div>
             <div class="ac-p">You may now proceed with your order.</div>
             <div class="ac-hint">Your age was successfully verified, thank you for your patience.</div><i class="fa fa-check large-icon"></i></div>
         </div>
-        <div class="modal-body step-5" data-step="5">
+        <div class="modal-body step-4" data-step="4">
           <div id="ac-step12" class="ac-step" style="display: block !important;">
             <div class="ac-h3">Error!</div>
             <div class="ac-p">We could not verify your identity.</div>
@@ -739,7 +742,7 @@
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary step step-1" data-step="1" ng-click="verifyUserAge(info)" onclick="sendEvent('#demo-modal-3', 1)">Continue</button>
           <button type="button" class="btn btn-primary step step-2" data-step="2" onclick="sendEvent('#demo-modal-3', 1)" style="display: none;">Back</button>
-          <button type="button" class="btn btn-primary step step-2" data-step="2" onclick="sendEvent('#demo-modal-3', 3)" style="display: none;">Continue</button>
+          <button type="button" class="btn btn-primary step step-2" data-step="2" onclick="processUploadViaPhone('#demo-modal-3', 3)" style="display: none;">Continue</button>
           <button type="button" class="btn btn-primary step step-3" data-step="3" onclick="sendEvent('#demo-modal-3', 3)" style="display: none;">Continue</button>
           <button type="button" class="btn btn-primary step step-4" data-step="4" onclick="sendEvent('#demo-modal-3', 4)" style="display: none;">Continue</button>
         </div>
@@ -747,6 +750,14 @@
     </div>
   </form>
   <script>
+    <% if (state === 'id-upload') {%>
+        function r(f){/in/.test(document.readyState)?setTimeout('r('+f+')',9):f()}
+// use like
+r(function(){
+    $('#demo-modal-3').modal()
+   $('#demo-modal-3').trigger('next.m.2');
+});
+    <% } %>
   function objectifyForm(formArray) {//serialize data function
     var returnArray = {};
     for (var i = 0; i < formArray.length; i++){
@@ -778,7 +789,17 @@
   }
   function sendLink() {
     var phoneNumber = $('#twilio_number').val();
-
+  }
+  function processUploadViaPhone() {
+    var phoneNumber = $('#phone_number').val()
+    $.post({
+        url: '/api/twillo',
+        data: {
+            lastName: 'meyou',
+            state: 'id-upload',
+            phone_number: phoneNumber,
+        }
+    })
   }
   sendEvent = function(sel, step) {
     var dobData = objectifyForm($( "form" ).serializeArray())

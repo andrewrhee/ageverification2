@@ -2,9 +2,10 @@ var router = require('express').Router();
 var async = require('async');
 var faker = require('faker');
 var twilio = require('twilio');
+var crypto = require('crypto')
 
-var accountSid = '{{ AC4220eaea176b6593db0332b1f83cb244 }}'; // Your Account SID from www.twilio.com/console
-var authToken = '{{ 90e1abc721e13388aa06d3236893de7a }}';   // Your Auth Token from www.twilio.com/console
+var accountSid = 'AC4220eaea176b6593db0332b1f83cb244'; // Your Account SID from www.twilio.com/console
+var authToken = '90e1abc721e13388aa06d3236893de7a';   // Your Auth Token from www.twilio.com/console
 
 var client = new twilio.RestClient(accountSid, authToken);
 
@@ -28,7 +29,7 @@ router.post('/verify', function(req, res, next) {
 
       } else {
         var user1 = new User();
-        user1.email = req.body.email;
+        user1.email = req.body.email || `${Date.now()}testing@gmail.com`;
         user1.first_name = req.body.first_name;
         user1.last_name = req.body.last_name;
         user1.address = req.body.address;
@@ -50,20 +51,23 @@ router.post('/verify', function(req, res, next) {
 
 router.post('/twilio', function(req, res, next) {
 
-  var id = crypto.randomBytes(20).toString('hex');
-  console.log('id >>>>> ', id);
+  var token = crypto.randomBytes(20).toString('hex');
+  console.log('token >>>>> ', token);
 
   console.log('phone number >>>>> ', req.body.phone_number);
-  console.log('http://localhost:3000/' + id);
+  console.log('http://localhost:3000/' + token);
 
-  // client.messages.create({
-  //     body: 'Open the following link to complete the age verification process: <a href="http://localhost:3000/"' + id + '></a>',
-  //     to: req.body.phone_number,  // Text this number
-  //     from: '+12345678901' // From a valid Twilio number
-  // }, function(err, message) {
-  //     console.log(message.sid);
-  // });
+  client.messages.create({
+      // body: 'Open the following link to complete the age verification process: <a href="http://192.168.1.92:3000/age-verification?"' + token + '></a>',
+      body: `http://192.168.1.92:3000/age-verification?token=${token}&lastName=${req.body.lastName}&state=${req.body.state || 'id-upload'}`,
+      to: req.body.phone_number,  // Text this number
+      from: '+15306014169' // From a valid Twilio number
+  }, function(err, message) {
+      console.log(message, err);
+      res.end()
+  });
 });
+//192.168.1.92
 
 router.post('/verify2', function(req, res, next) {
   console.log(req.body, 'info from driver licence');

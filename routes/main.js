@@ -11,8 +11,23 @@ router.get('/', function(req, res) {
   res.render('main/home');
 });
 
+//some random token to protect the page
+function validateToken(token) {
+  return token
+}
 router.get('/age-verification', function(req, res) {
-  res.render('age-verification');
+  if (req.query.state === 'id-upload' && validateToken(req.query.token) && req.query.lastName)
+    return User.findOne({ 'last_name': req.query.lastName}, function(err, user) {
+      if (err || !user) {
+        res.render('age-verification') //should be a proper error handling
+      }
+      console.log(user);
+      return res.render('age-verification', {
+        user: user,
+        state: req.query.state
+      })
+    })
+  res.render('age-verification', { user: {}, state: 'id-upload'});
 });
 
 router.get('/about', function(req, res) {
