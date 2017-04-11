@@ -1,0 +1,74 @@
+body {
+  padding-top: 100px;
+}
+
+#navbar-gap {
+  margin-top: -4%;
+}
+
+#priceValue {
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.product-image {
+  width: 100%;
+}
+
+#ac-id-icon {
+    background: url(../images/license.png) no-repeat 0 0;
+    width: 144px;
+    height: 144px;
+    background-size: 144px 92px;
+    margin: 1em auto;
+}
+
+.label {
+  color: #000;
+  padding-top: 20px;
+}
+
+.group .group-contents {
+    border-radius: 5px;
+    border: 1px solid #cecece;
+    color: #4c4c4c;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.group .group-heading {
+    color: #888;
+    margin-bottom: 12px;
+}
+
+
+#order-summary .group-contents .order-row {
+    padding-bottom: .5em;
+}
+
+#order-summary .group-contents .order-row span+span {
+    float: right;
+}
+
+#order-summary .group-contents #total {
+    padding-top: .5em;
+    border-top: 1px solid #cecece;
+    font-weight: 700!important;
+}
+
+.modal .multi-step .modal-dialog {
+  left: 0%;
+}
+
+.starter-template {
+  width: 40%;
+}
+
+#extractedData {
+  width: 40%;
+}
+
+#faceImage, #signImage {
+  display: none;
+}
